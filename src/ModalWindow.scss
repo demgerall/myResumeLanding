@@ -1,0 +1,135 @@
+$mainColor: #4824ff;
+$shadowColor: #4824ff40;
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba($color: #000000, $alpha: 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+
+        .modal-content {
+            transform: translateY(0);
+        }
+    }
+}
+
+.modal-content {
+    width: 500px;
+    padding: 40px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+
+    background: white;
+    border-radius: 40px;
+
+    transform: translateY(-50px);
+    transition: transform 0.5s ease;
+    z-index: 1001;
+}
+
+.modal-close-button {
+    width: 50px;
+    height: 50px;
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-size: 0;
+
+    &::before,
+    &::after {
+        content: '';
+
+        width: 30px;
+        height: 2px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        background-color: #333;
+    }
+
+    &::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+.social-button {
+    width: 150px;
+    height: 55px;
+    margin-right: 2%;
+
+    display: flex;
+    align-items: center;
+
+    background-color: black;
+    border-radius: 55px;
+    cursor: pointer;
+
+    color: white;
+    font-size: 20px;
+
+    transition: 0.3s;
+
+    &:hover {
+        background: $mainColor;
+        filter: drop-shadow(0px 0px 35px $shadowColor);
+        color: #eeebff;
+    }
+}
+
+.social {
+    width: 40px;
+    height: 40px;
+
+    &.telegram {
+        background-image: url(/icons/telegram_icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &.vk {
+        background-image: url(/icons/vk_icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &.github {
+        background-image: url(/icons/github_icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}

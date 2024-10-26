@@ -1,43 +1,149 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+$mainColor: #4824ff;
+$shadowColor: #4824ff40;
+
+header {
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    place-items: center;
+
+    a {
+        font-size: 18px;
+        font-weight: 700;
+
+        margin-right: 3%;
+
+        transition: 0.3s ease-in-out;
+
+        cursor: pointer;
+
+        &:hover {
+            color: $mainColor;
+            filter: drop-shadow(0px 0px 50px $mainColor);
+        }
+    }
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+.menu {
+    height: 100%;
+    width: 100%;
+    flex-shrink: 10;
+
+    align-content: center;
+}
+
+.header_btn {
+    height: 55px;
+    width: 222px;
+
+    border-radius: 55px;
+
+    background: $mainColor;
+    border: none;
+
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+
+    transition: 0.5s ease-in-out;
+
+    overflow: hidden;
+
+    margin-right: 2%;
+
+    cursor: pointer;
+    outline: none;
+
+    &::before {
+        content: ' ';
+
+        height: 300px;
+        width: 30px;
+
+        position: absolute;
+
+        background: #ffffffbd;
+        filter: blur(2px);
+
+        transition: 0.5s;
+        transform: rotate(-20deg) translateX(-50px) translateY(-200px);
+    }
 
     &:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-    }
-    &.react:hover {
-        filter: drop-shadow(0 0 2em #61dafbaa);
+        filter: drop-shadow(0px 0px 35px $shadowColor);
+
+        &:before {
+            transform: rotate(-20deg) translateX(200px);
+        }
     }
 }
 
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
+.icon {
+    height: 40px;
+    width: 40px;
+    margin-right: 1%;
+
+    background-color: black;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    &.telegram {
+        background-image: url(/icons/telegram_icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
     }
-    to {
-        transform: rotate(360deg);
+    &.vk {
+        background-image: url(/icons/vk_icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    &.github {
+        background-image: url(/icons/github_icon.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &:hover {
+        background-color: $mainColor;
+        filter: drop-shadow(0px 0px 35px $shadowColor);
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
+.switch {
+    width: 70px;
+    height: 40px;
+
+    margin: 1%;
+
+    border-radius: 40px;
+    background-color: #eeebff;
+
+    overflow: hidden;
+
+    .theme {
+        width: 37px;
+        height: 37px;
+        margin: 2px;
+
+        border-radius: 40px;
+        background-color: black;
+
+        transition: 0.5s ease-in-out;
+
+        &.light {
+            filter: invert(100%);
+            background-image: url(/icons/switch_theme_icon.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
-}
 
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
+    &:hover > .theme.light {
+        transform: rotate(45deg);
+    }
 }

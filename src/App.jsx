@@ -1,39 +1,47 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import React, { useState } from 'react';
+import { ModalWindow } from './ModalWindow.jsx';
 import './App.scss';
 
-function App() {
-    const [count, setCount] = useState(0);
+export function App() {
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
     return (
         <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img
-                        src={reactLogo}
-                        className="logo react"
-                        alt="React logo"
-                    />
-                </a>
-            </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount(count => count + 1)}>
-                    count is {count}
+            <header>
+                <div className="menu">
+                    <a href="#">Обо мне</a>
+                    <a href="#">Услуги</a>
+                    <a href="#">Портфолио</a>
+                    <a href="#">Отзывы</a>
+                    <a href="#">Гарантии</a>
+                </div>
+
+                <button onClick={handleOpenModal} className="header_btn">
+                    Связаться
                 </button>
-                <p>
-                    Edit <code>src/App.jsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
+                <ModalWindow show={showModal} onClose={handleCloseModal}>
+                    <h2 style={{ color: '#4824ff', fontSize: '40px' }}>
+                        Контакты
+                    </h2>
+                    <p style={{ fontSize: '22px' }}>
+                        Вы можете связаться со мной в Телеграм <br /> или ВК 👇
+                    </p>
+                </ModalWindow>
+
+                <a href="#" target="_blank" className="icon telegram"></a>
+                <a href="#" target="_blank" className="icon vk"></a>
+                <a href="#" target="_blank" className="icon github"></a>
+                <div className="switch">
+                    <div className="theme light"></div>
+                </div>
+            </header>
         </>
     );
 }
-
-export default App;
