@@ -1,5 +1,8 @@
 $mainColor: #4824ff;
 $shadowColor: #4824ff40;
+$backgroundColor: #4824ff70;
+
+$notStandardFont: 'Prata Regular';
 
 header {
     height: 100px;
@@ -146,4 +149,201 @@ header {
     &:hover > .theme.light {
         transform: rotate(45deg);
     }
+}
+
+.welcome-block {
+    height: 650px;
+
+    display: flex;
+    place-items: center;
+
+    background: white;
+
+    h1 {
+        font-size: 52px;
+    }
+    h2 {
+        font-size: 42px;
+        font-weight: 450;
+    }
+    h3 {
+        font-size: 30px;
+        font-weight: 300;
+    }
+
+    .first-block {
+        width: 55%;
+
+        align-content: center;
+    }
+}
+
+.title {
+    background: linear-gradient(
+        to right,
+        $mainColor,
+        $mainColor,
+        #85ebff,
+        #eeebff,
+        #85aeff,
+        $mainColor,
+        $mainColor
+    );
+    background-clip: text;
+    color: transparent;
+    background-size: 200%;
+    animation: gradientAnimation 3s linear infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 200% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.main-image-box {
+    width: 45%;
+
+    overflow: hidden;
+
+    img {
+        border-bottom-right-radius: 25%;
+        scale: 0.8;
+    }
+}
+
+.service-block {
+    height: 500px;
+
+    margin: 0 -5vw;
+    padding: 0 5vw;
+
+    background-color: #fbfaff;
+    align-content: center;
+
+    .tag {
+        margin: 0 12px 0 0;
+        padding: 8px 22px 8px 8px;
+
+        display: flex;
+
+        color: $mainColor;
+        font-size: 24px;
+        font-weight: 550;
+
+        background-color: #eeebff;
+        border-radius: 24px;
+
+        .tag-icon {
+            height: 50px;
+            margin: -10px;
+            padding: 0;
+
+            position: relative;
+
+            content: url(/icons/checkbox_mark_icon.svg);
+            background: none;
+            scale: 0.33;
+        }
+    }
+}
+
+.portfolio-block {
+    height: auto;
+
+    .first-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-title {
+        margin: 50px 0 20px 0;
+
+        font-size: 56px;
+        font-weight: 700;
+        // font-family: $notStandardFont;
+
+        background: linear-gradient(to right, black, $mainColor);
+        color: transparent;
+        background-clip: text;
+    }
+
+    .array-icon {
+        width: 75px;
+        padding: 0;
+
+        filter: drop-shadow(20px 20px 15px #4824ff25);
+    }
+
+    .title-border {
+        margin: 10px 0;
+
+        font-size: 56px;
+        font-weight: 700;
+        // font-family: $notStandardFont;
+        color: white;
+        text-shadow:
+            -1px -1px 0 #4824ff30,
+            1px -1px 0 #4824ff30,
+            -1px 1px 0 #4824ff30,
+            1px 1px 0 #4824ff30;
+    }
+
+    .tag {
+        margin: 0 12px 0 0;
+        padding: 8px 22px;
+
+        display: flex;
+
+        font-size: 20px;
+        font-weight: 500;
+        color: $mainColor;
+
+        background-color: #eeebff;
+        border-radius: 24px;
+        border: 1px solid #eeebff;
+        cursor: pointer;
+
+        transition: 0.5s ease-in-out;
+    }
+
+    .tag:hover {
+        background: $mainColor;
+        filter: drop-shadow(0px 0px 30px #4824ff25);
+
+        color: white;
+    }
+
+    .selected {
+        background: #04001a;
+        border: 1px solid $mainColor;
+
+        color: white;
+    }
+}
+
+.gradient-part-one {
+    height: 70px;
+    width: 200px;
+
+    position: absolute;
+
+    background: linear-gradient(to right, transparent, white);
+
+    color: transparent;
+}
+
+.gradient-part-two {
+    height: 70px;
+    width: 200px;
+
+    position: absolute;
+
+    background: linear-gradient(to left, transparent, white);
+
+    color: transparent;
 }

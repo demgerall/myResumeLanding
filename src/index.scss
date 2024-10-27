@@ -1,8 +1,14 @@
-$standartFont: 'Onest Regular';
+$standardFont: 'Onest Regular';
+$notStandardFont: 'Prata Regular';
 
 @font-face {
-    font-family: $standartFont;
+    font-family: $standardFont;
     src: url(/fonts/Onest-Regular.ttf);
+}
+
+@font-face {
+    font-family: $notStandardFont;
+    src: url(/fonts/Prata-Regular.ttf);
 }
 
 * {
@@ -11,9 +17,9 @@ $standartFont: 'Onest Regular';
 }
 
 body {
-    margin: 0 5%;
+    margin: 0 5vw;
 
-    font-family: $standartFont;
+    font-family: $standardFont;
 }
 
 a {
