@@ -347,3 +347,154 @@ header {
 
     color: transparent;
 }
+
+.review-block {
+    height: 580px;
+    margin: 80px 0;
+
+    background: $mainColor;
+    border-radius: 28px;
+
+    h1 {
+        padding-top: 36px;
+
+        text-align: center;
+
+        color: white;
+        font-size: 50px;
+    }
+
+    .description {
+        margin-top: -12px;
+
+        text-align: center;
+
+        color: white;
+        font-size: 22px;
+        line-height: 32px;
+    }
+
+    .selecting {
+        margin: 0 8px;
+
+        background: white;
+
+        color: black;
+        font-weight: 700;
+    }
+
+    .review {
+        width: 90%;
+        margin-top: auto;
+
+        font-size: 19px;
+        line-height: 27px;
+    }
+
+    .link {
+        height: 40px;
+        width: 80px;
+
+        display: flex;
+
+        background: black;
+        border: 2px solid black;
+        border-radius: 24px;
+        cursor: pointer;
+
+        transition: 0.5s ease-in-out;
+
+        &:hover {
+            border: 2px double $mainColor;
+            filter: drop-shadow(0 0 25px #4824ff90);
+        }
+    }
+
+    .telegram-icon {
+        height: 50px;
+        margin: -7px -4px;
+        padding: 0;
+
+        position: relative;
+
+        background: none;
+
+        content: url('/icons/telegram_icon.svg');
+        scale: 0.5;
+    }
+
+    .array-corner-icon {
+        height: 50px;
+        margin: -6px -18px;
+        padding: 0;
+
+        position: relative;
+
+        background: none;
+
+        content: url('/icons/arrow-circle.svg');
+        scale: 0.5;
+    }
+}
+
+.review-carousel {
+    width: 1260px;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+}
+
+.review-container {
+    display: flex;
+
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+.next-button {
+    width: 55px;
+    height: 55px;
+    margin: 16px 0 0 10px;
+
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.7s;
+
+    .arrow-next-icon {
+        height: 50px;
+        padding: 15px;
+
+        content: url(/icons/arrow.svg);
+        // scale: 0.7;
+    }
+
+    &:hover {
+        background: #00000050;
+
+        .arrow-next-icon {
+            filter: invert(100%);
+        }
+    }
+}
+
+.review-card {
+    min-width: 420px;
+}
+
+.review-content {
+    height: 230px;
+    width: 364px;
+    margin: 0 18px;
+    padding: 10px;
+
+    background: white;
+    border-radius: 24px;
+}
