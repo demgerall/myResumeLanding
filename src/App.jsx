@@ -5,10 +5,33 @@ import { Landings } from './Landings.jsx';
 import { WebServices } from './WebServices.jsx';
 import { Markets } from './Markets.jsx';
 import { Review } from './Rewiew.jsx';
+import { Theme } from './Theme.jsx';
 import './App.scss';
 import './index.scss';
 
 export function App() {
+    const { theme, setTheme } = Theme();
+    const [isDarkTheme, setIsDarkTheme] = useState(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme === 'dark';
+    });
+
+    const toggleTheme = () => {
+        if (isDarkTheme) {
+            lightTheme();
+        } else {
+            darkTheme();
+        }
+        setIsDarkTheme(!isDarkTheme);
+    };
+
+    const lightTheme = () => {
+        setTheme('light');
+    };
+    const darkTheme = () => {
+        setTheme('dark');
+    };
+
     const [showModal, setShowModal] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -96,26 +119,114 @@ export function App() {
         };
     }, []);
 
+    const [scroll, setScroll] = useState(0);
+
+    const scrollUp = () => {
+        setScroll(window.scrollY);
+    };
+
+    const upButton = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', scrollUp);
+    }, []);
+
+    const toBlock = height => {
+        window.scrollTo({ top: height, left: 0, behavior: 'smooth' });
+    };
+
     return (
         <>
             <header>
-                <div className="menu">
-                    <a href="#">Обо мне</a>
-                    <a href="#">Услуги</a>
-                    <a href="#">Портфолио</a>
-                    <a href="#">Отзывы</a>
-                    <a href="#">Гарантии</a>
-                </div>
+                <div className="navigation">
+                    <div className="menu">
+                        <a onClick={upButton}>Обо мне</a>
+                        <a
+                            onClick={e =>
+                                toBlock(e.target.getAttribute('height'))
+                            }
+                            height="500"
+                        >
+                            Услуги
+                        </a>
+                        <a
+                            onClick={e =>
+                                toBlock(e.target.getAttribute('height'))
+                            }
+                            height="1100"
+                        >
+                            Портфолио
+                        </a>
+                        <a
+                            onClick={e =>
+                                toBlock(e.target.getAttribute('height'))
+                            }
+                            height="1750"
+                        >
+                            Отзывы
+                        </a>
+                        <a
+                            onClick={e =>
+                                toBlock(e.target.getAttribute('height'))
+                            }
+                            height="2600"
+                        >
+                            Гарантии
+                        </a>
+                    </div>
 
-                <button onClick={handleOpenModal} className="header_btn">
-                    Связаться
-                </button>
+                    <div className="header-buttons">
+                        <button
+                            onClick={handleOpenModal}
+                            className="header_btn"
+                        >
+                            Связаться
+                        </button>
 
-                <a href="#" target="_blank" className="icon telegram"></a>
-                <a href="#" target="_blank" className="icon vk"></a>
-                <a href="#" target="_blank" className="icon github"></a>
-                <div className="switch">
-                    <div className="theme light"></div>
+                        <a
+                            href="#"
+                            target="_blank"
+                            className={
+                                theme === 'light'
+                                    ? 'icon telegram light'
+                                    : 'icon telegram dark'
+                            }
+                        ></a>
+                        <a
+                            href="#"
+                            target="_blank"
+                            className={
+                                theme === 'light'
+                                    ? 'icon vk light'
+                                    : 'icon vk dark'
+                            }
+                        ></a>
+                        <a
+                            href="#"
+                            target="_blank"
+                            className={
+                                theme === 'light'
+                                    ? 'icon github light'
+                                    : 'icon github dark'
+                            }
+                        ></a>
+                        <div className="switch" onClick={toggleTheme}>
+                            <div
+                                className={
+                                    theme === 'light'
+                                        ? 'theme light'
+                                        : 'theme dark'
+                                }
+                                style={{
+                                    transform: isDarkTheme
+                                        ? 'translateX(20px)'
+                                        : 'translate(0)',
+                                }}
+                            ></div>
+                        </div>
+                    </div>
                 </div>
             </header>
 
@@ -157,29 +268,65 @@ export function App() {
 
                 <div style={{ display: 'flex' }}>
                     <p className="tag">
-                        <p className="tag-icon"></p>
+                        <p
+                            className={
+                                theme === 'light'
+                                    ? 'icon tag-icon light'
+                                    : 'icon tag-icon dark'
+                            }
+                        ></p>
                         Корпоративные сайты
                     </p>
                     <p className="tag">
-                        <p className="tag-icon"></p>
+                        <p
+                            className={
+                                theme === 'light'
+                                    ? 'icon tag-icon light'
+                                    : 'icon tag-icon dark'
+                            }
+                        ></p>
                         Информационные сайты
                     </p>
                     <p className="tag">
-                        <p className="tag-icon"></p>
+                        <p
+                            className={
+                                theme === 'light'
+                                    ? 'icon tag-icon light'
+                                    : 'icon tag-icon dark'
+                            }
+                        ></p>
                         Онлайн-магазины
                     </p>
                     <p className="tag">
-                        <p className="tag-icon"></p>
+                        <p
+                            className={
+                                theme === 'light'
+                                    ? 'icon tag-icon light'
+                                    : 'icon tag-icon dark'
+                            }
+                        ></p>
                         Веб-сервисы
                     </p>
                 </div>
                 <div style={{ display: 'flex', marginTop: '16px' }}>
                     <p className="tag">
-                        <p className="tag-icon"></p>
+                        <p
+                            className={
+                                theme === 'light'
+                                    ? 'icon tag-icon light'
+                                    : 'icon tag-icon dark'
+                            }
+                        ></p>
                         Сайты Лендинги
                     </p>
                     <p className="tag">
-                        <p className="tag-icon"></p>
+                        <p
+                            className={
+                                theme === 'light'
+                                    ? 'icon tag-icon light'
+                                    : 'icon tag-icon dark'
+                            }
+                        ></p>
                         Многостраничные сайты
                     </p>
                 </div>
@@ -291,6 +438,59 @@ export function App() {
                     </p>
                 </div>
             </div>
+
+            <div className="guarantees-block">
+                <h1 style={{ fontSize: '52px', paddingBottom: '20px' }}>
+                    ГАРАНТИИ
+                </h1>
+
+                <ol className="guarantees-points">
+                    <li className="point">
+                        Оплату принимаю через платежную систему
+                        <span style={{ color: '#4824ff' }}> Название*</span>,
+                        которая контролирует <br /> безопасность денежных
+                        переводов
+                    </li>
+                    <li className="point">
+                        Убедиться в моей отвественности и профессионализме можно
+                        лично в любой момент, <br />
+                        <span style={{ color: '#4824ff' }}>
+                            {' '}
+                            написав заказчикам{' '}
+                        </span>
+                        , которые оставили свои отзывы.
+                    </li>
+                    <li className="point">
+                        Все
+                        <span style={{ color: '#4824ff' }}>
+                            {' '}
+                            авторские права{' '}
+                        </span>
+                        на работу переходят заказчику после выполнения заказа.
+                    </li>
+                    <li className="point">
+                        В своих работах использую материалы строго{' '}
+                        <span style={{ color: '#4824ff' }}>
+                            {' '}
+                            разрешенные для личного <br /> и коммерческого
+                            использования{' '}
+                        </span>
+                    </li>
+                </ol>
+            </div>
+
+            <footer>demgerall</footer>
+
+            <button
+                className={
+                    scroll < 1960
+                        ? ''
+                        : theme === 'light'
+                          ? 'btn-up light'
+                          : 'btn-up dark'
+                }
+                onClick={upButton}
+            ></button>
 
             <ModalWindow show={showModal} onClose={handleCloseModal}>
                 <h2 style={{ color: '#4824ff', fontSize: '40px' }}>Контакты</h2>

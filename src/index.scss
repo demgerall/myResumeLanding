@@ -11,6 +11,46 @@ $notStandardFont: 'Prata Regular';
     src: url(/fonts/Prata-Regular.ttf);
 }
 
+html[data-theme='light'] {
+    --mainBackground: white;
+    --headerBackground: #ffffffe1;
+    --serviceBackground: #fbfaff;
+
+    --mainTextColor: black;
+
+    --switchBackground: #eeebff;
+    --themeBackground: white;
+
+    --titleBorderColor: #4824ff30;
+
+    --mainElementsColor: #eeebff;
+    --elementsColor: #eeebff;
+    --elementsTextColor: white;
+
+    --tagTextColor: #4824ff;
+    --selectedTagBackground: #04001a;
+}
+
+html[data-theme='dark'] {
+    --mainBackground: #04001a;
+    --headerBackground: #04001ae1;
+    --serviceBackground: #060026;
+
+    --mainTextColor: white;
+
+    --switchBackground: #120940;
+    --themeBackground: #4824ff;
+
+    --titleBorderColor: #eeebff25;
+
+    --mainElementsColor: #4824ff;
+    --elementsColor: #080033;
+    --elementsTextColor: black;
+
+    --tagTextColor: white;
+    --selectedTagBackground: white;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,9 +60,11 @@ body {
     margin: 0 5vw;
 
     font-family: $standardFont;
+    background-color: var(--mainBackground);
+    color: var(--mainTextColor);
 }
 
 a {
-    color: black;
+    color: var(--mainTextColor);
     text-decoration: none;
 }

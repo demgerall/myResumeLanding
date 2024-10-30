@@ -5,12 +5,19 @@ $backgroundColor: #4824ff70;
 $notStandardFont: 'Prata Regular';
 
 header {
-    height: 100px;
-    width: 100%;
+    height: 80px;
+    width: 90vw;
+    margin: 0 -5vw;
+    padding: 0 5vw;
 
-    display: flex;
-    flex-flow: row nowrap;
-    place-items: center;
+    position: fixed;
+
+    align-content: center;
+
+    background: var(--headerBackground);
+    backdrop-filter: blur(8px);
+
+    z-index: 999;
 
     a {
         font-size: 18px;
@@ -29,22 +36,37 @@ header {
     }
 }
 
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .menu {
     height: 100%;
-    width: 100%;
+    width: 50vw;
     flex-shrink: 10;
 
     align-content: center;
 }
 
+.header-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
 .header_btn {
     height: 55px;
-    width: 222px;
+    width: 165px;
+    margin-right: 2%;
 
-    border-radius: 55px;
+    position: relative;
 
-    background: $mainColor;
     border: none;
+    border-radius: 55px;
+    background: $mainColor;
 
     color: white;
     font-weight: 700;
@@ -53,8 +75,6 @@ header {
     transition: 0.5s ease-in-out;
 
     overflow: hidden;
-
-    margin-right: 2%;
 
     cursor: pointer;
     outline: none;
@@ -88,7 +108,9 @@ header {
     width: 40px;
     margin-right: 1%;
 
-    background-color: black;
+    flex-shrink: 0;
+
+    background-color: var(--mainTextColor);
     border-radius: 50%;
 
     cursor: pointer;
@@ -96,19 +118,40 @@ header {
     transition: 0.3s;
 
     &.telegram {
-        background-image: url(/icons/telegram_icon.svg);
-        background-position: center;
-        background-repeat: no-repeat;
+        &.light {
+            background-image: url(/icons/telegram_icon.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        &.dark {
+            background-image: url(/icons/telegram_icon_dark.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
     &.vk {
-        background-image: url(/icons/vk_icon.svg);
-        background-position: center;
-        background-repeat: no-repeat;
+        &.light {
+            background-image: url(/icons/vk_icon.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        &.dark {
+            background-image: url(/icons/vk_icon_dark.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
     &.github {
-        background-image: url(/icons/github_icon.svg);
-        background-position: center;
-        background-repeat: no-repeat;
+        &.light {
+            background-image: url(/icons/github_icon.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        &.dark {
+            background-image: url(/icons/github_icon_dark.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
 
     &:hover {
@@ -124,7 +167,8 @@ header {
     margin: 1%;
 
     border-radius: 40px;
-    background-color: #eeebff;
+    background-color: var(--switchBackground);
+    cursor: pointer;
 
     overflow: hidden;
 
@@ -134,12 +178,16 @@ header {
         margin: 2px;
 
         border-radius: 40px;
-        background-color: black;
+        background-color: var(--themeBackground);
 
         transition: 0.5s ease-in-out;
 
         &.light {
-            filter: invert(100%);
+            background-image: url(/icons/switch_theme_icon_dark.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        &.dark {
             background-image: url(/icons/switch_theme_icon.svg);
             background-position: center;
             background-repeat: no-repeat;
@@ -152,12 +200,12 @@ header {
 }
 
 .welcome-block {
-    height: 650px;
+    height: 730px;
 
     display: flex;
     place-items: center;
 
-    background: white;
+    background: var(----mainBackground);
 
     h1 {
         font-size: 52px;
@@ -184,7 +232,7 @@ header {
         $mainColor,
         $mainColor,
         #85ebff,
-        #eeebff,
+        var(--mainElementsColor),
         #85aeff,
         $mainColor,
         $mainColor
@@ -221,7 +269,7 @@ header {
     margin: 0 -5vw;
     padding: 0 5vw;
 
-    background-color: #fbfaff;
+    background-color: var(--serviceBackground);
     align-content: center;
 
     .tag {
@@ -230,11 +278,11 @@ header {
 
         display: flex;
 
-        color: $mainColor;
+        color: var(--tagTextColor);
         font-size: 24px;
         font-weight: 550;
 
-        background-color: #eeebff;
+        background-color: var(--mainElementsColor);
         border-radius: 24px;
 
         .tag-icon {
@@ -244,9 +292,15 @@ header {
 
             position: relative;
 
-            content: url(/icons/checkbox_mark_icon.svg);
             background: none;
             scale: 0.33;
+
+            &.light {
+                content: url(/icons/checkbox_mark_icon.svg);
+            }
+            &.dark {
+                content: url(/icons/checkbox_mark_icon_dark.svg);
+            }
         }
     }
 }
@@ -267,7 +321,7 @@ header {
         font-weight: 700;
         // font-family: $notStandardFont;
 
-        background: linear-gradient(to right, black, $mainColor);
+        background: linear-gradient(to right, var(--mainTextColor), $mainColor);
         color: transparent;
         background-clip: text;
     }
@@ -285,12 +339,12 @@ header {
         font-size: 56px;
         font-weight: 700;
         // font-family: $notStandardFont;
-        color: white;
+        color: var(--mainBackground);
         text-shadow:
-            -1px -1px 0 #4824ff30,
-            1px -1px 0 #4824ff30,
-            -1px 1px 0 #4824ff30,
-            1px 1px 0 #4824ff30;
+            -1px -1px 0 var(--titleBorderColor),
+            1px -1px 0 var(--titleBorderColor),
+            -1px 1px 0 var(--titleBorderColor),
+            1px 1px 0 var(--titleBorderColor);
     }
 
     .tag {
@@ -303,9 +357,9 @@ header {
         font-weight: 500;
         color: $mainColor;
 
-        background-color: #eeebff;
+        background-color: var(--elementsColor);
         border-radius: 24px;
-        border: 1px solid #eeebff;
+        border: 1px solid var(--elementsColor);
         cursor: pointer;
 
         transition: 0.5s ease-in-out;
@@ -319,10 +373,10 @@ header {
     }
 
     .selected {
-        background: #04001a;
+        background: var(--selectedTagBackground);
         border: 1px solid $mainColor;
 
-        color: white;
+        color: var(--elementsTextColor);
     }
 }
 
@@ -332,7 +386,7 @@ header {
 
     position: absolute;
 
-    background: linear-gradient(to right, transparent, white);
+    background: linear-gradient(to right, transparent, var(--mainBackground));
 
     color: transparent;
 }
@@ -343,7 +397,7 @@ header {
 
     position: absolute;
 
-    background: linear-gradient(to left, transparent, white);
+    background: linear-gradient(to left, transparent, var(--mainBackground));
 
     color: transparent;
 }
@@ -362,6 +416,10 @@ header {
 
         color: white;
         font-size: 50px;
+    }
+
+    h2 {
+        color: black;
     }
 
     .description {
@@ -387,6 +445,7 @@ header {
         width: 90%;
         margin-top: auto;
 
+        color: black;
         font-size: 19px;
         line-height: 27px;
     }
@@ -497,4 +556,102 @@ header {
 
     background: white;
     border-radius: 24px;
+}
+
+.guarantees-block {
+    height: 540px;
+
+    font-size: 26px;
+}
+
+.guarantees-points {
+    padding-left: 20px;
+
+    list-style-type: none;
+
+    li {
+        padding-left: 60px;
+
+        position: relative;
+
+        &::before {
+            content: '';
+
+            width: 40px;
+            height: 40px;
+            margin-left: -20px;
+
+            position: absolute;
+            left: 0;
+
+            background-image: url('/icons/checked.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+
+            transform: translateY(-10%);
+        }
+    }
+}
+
+.point {
+    margin-top: 35px;
+}
+
+footer {
+    height: 80px;
+    margin: 0 -5vw;
+
+    text-align: center;
+    font-size: 16px;
+
+    border-top: 1px solid var(--mainElementsColor);
+
+    align-content: center;
+}
+
+.btn-up {
+    position: fixed;
+    right: 5vw;
+    bottom: 5vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    opacity: 0;
+
+    animation: appearance 2s forwards;
+    transform: translateY(0px);
+    transition: 0.3s linear;
+
+    &::before {
+        content: '';
+        width: 70px;
+        height: 70px;
+
+        background-size: 100% 100%;
+
+        transform: rotate(-90deg);
+    }
+
+    &.light::before {
+        background-image: url('/icons/arrow.svg');
+    }
+    &.dark::before {
+        background-image: url('/icons/arrow_dark.svg');
+    }
+}
+
+@keyframes appearance {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }

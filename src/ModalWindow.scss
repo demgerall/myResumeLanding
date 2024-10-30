@@ -21,6 +21,8 @@ $shadowColor: #4824ff40;
         opacity 0.5s ease,
         visibility 0.5s ease;
 
+    z-index: 1000;
+
     &.show {
         opacity: 1;
         visibility: visible;
@@ -45,6 +47,8 @@ $shadowColor: #4824ff40;
 
     background: white;
     border-radius: 40px;
+
+    color: #000;
 
     transform: translateY(-50px);
     transition: transform 0.5s ease;
