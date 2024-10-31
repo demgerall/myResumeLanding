@@ -11,6 +11,18 @@ $notStandardFont: 'Prata Regular';
     src: url(/fonts/Prata-Regular.ttf);
 }
 
+*::-webkit-scrollbar {
+    width: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #4824ff;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #ffffff01;
+}
+
 html[data-theme='light'] {
     --mainBackground: white;
     --headerBackground: #ffffffe1;

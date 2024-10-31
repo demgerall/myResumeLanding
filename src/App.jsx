@@ -6,10 +6,27 @@ import { WebServices } from './WebServices.jsx';
 import { Markets } from './Markets.jsx';
 import { Review } from './Rewiew.jsx';
 import { Theme } from './Theme.jsx';
+import { ModalMenu } from './ModalMenu.jsx';
 import './App.scss';
 import './index.scss';
 
 export function App() {
+    const [isPortrait, setIsPortrait] = useState(
+        window.innerWidth > window.innerHeight,
+    );
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsPortrait(window.innerWidth > window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const { theme, setTheme } = Theme();
     const [isDarkTheme, setIsDarkTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
@@ -33,6 +50,7 @@ export function App() {
     };
 
     const [showModal, setShowModal] = useState(false);
+    const [showModalMenu, setShowModalMenu] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('All');
 
     const renderComponents = () => {
@@ -55,6 +73,13 @@ export function App() {
     };
     const handleCloseModal = () => {
         setShowModal(false);
+    };
+
+    const handleOpenModalMenu = () => {
+        setShowModalMenu(true);
+    };
+    const handleCloseModalMenu = () => {
+        setShowModalMenu(false);
     };
 
     const containerRef = useRef(null);
@@ -140,94 +165,154 @@ export function App() {
     return (
         <>
             <header>
-                <div className="navigation">
-                    <div className="menu">
-                        <a onClick={upButton}>Обо мне</a>
-                        <a
-                            onClick={e =>
-                                toBlock(e.target.getAttribute('height'))
-                            }
-                            height="500"
-                        >
-                            Услуги
-                        </a>
-                        <a
-                            onClick={e =>
-                                toBlock(e.target.getAttribute('height'))
-                            }
-                            height="1100"
-                        >
-                            Портфолио
-                        </a>
-                        <a
-                            onClick={e =>
-                                toBlock(e.target.getAttribute('height'))
-                            }
-                            height="1750"
-                        >
-                            Отзывы
-                        </a>
-                        <a
-                            onClick={e =>
-                                toBlock(e.target.getAttribute('height'))
-                            }
-                            height="2600"
-                        >
-                            Гарантии
-                        </a>
+                {isPortrait ? (
+                    <div className="navigation">
+                        <div className="menu">
+                            <a onClick={upButton}>Обо мне</a>
+                            <a
+                                onClick={e =>
+                                    toBlock(e.target.getAttribute('height'))
+                                }
+                                height="500"
+                            >
+                                Услуги
+                            </a>
+                            <a
+                                onClick={e =>
+                                    toBlock(e.target.getAttribute('height'))
+                                }
+                                height="1100"
+                            >
+                                Портфолио
+                            </a>
+                            <a
+                                onClick={e =>
+                                    toBlock(e.target.getAttribute('height'))
+                                }
+                                height="1750"
+                            >
+                                Отзывы
+                            </a>
+                            <a
+                                onClick={e =>
+                                    toBlock(e.target.getAttribute('height'))
+                                }
+                                height="2600"
+                            >
+                                Гарантии
+                            </a>
+                        </div>
+
+                        <div className="header-buttons">
+                            <button
+                                onClick={handleOpenModal}
+                                className="header_btn"
+                            >
+                                Связаться
+                            </button>
+
+                            <a
+                                href="#"
+                                target="_blank"
+                                className={
+                                    theme === 'light'
+                                        ? 'icon telegram light'
+                                        : 'icon telegram dark'
+                                }
+                            ></a>
+                            <a
+                                href="#"
+                                target="_blank"
+                                className={
+                                    theme === 'light'
+                                        ? 'icon vk light'
+                                        : 'icon vk dark'
+                                }
+                            ></a>
+                            <a
+                                href="#"
+                                target="_blank"
+                                className={
+                                    theme === 'light'
+                                        ? 'icon github light'
+                                        : 'icon github dark'
+                                }
+                            ></a>
+                            <div className="switch" onClick={toggleTheme}>
+                                <div
+                                    className={
+                                        theme === 'light'
+                                            ? 'theme light'
+                                            : 'theme dark'
+                                    }
+                                    style={{
+                                        transform: isDarkTheme
+                                            ? 'translateX(20px)'
+                                            : 'translate(0)',
+                                    }}
+                                ></div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="header-buttons">
-                        <button
-                            onClick={handleOpenModal}
-                            className="header_btn"
+                ) : (
+                    <div className="navigation">
+                        <div
+                            className="switch switch-mobile"
+                            onClick={toggleTheme}
                         >
-                            Связаться
-                        </button>
-
-                        <a
-                            href="#"
-                            target="_blank"
-                            className={
-                                theme === 'light'
-                                    ? 'icon telegram light'
-                                    : 'icon telegram dark'
-                            }
-                        ></a>
-                        <a
-                            href="#"
-                            target="_blank"
-                            className={
-                                theme === 'light'
-                                    ? 'icon vk light'
-                                    : 'icon vk dark'
-                            }
-                        ></a>
-                        <a
-                            href="#"
-                            target="_blank"
-                            className={
-                                theme === 'light'
-                                    ? 'icon github light'
-                                    : 'icon github dark'
-                            }
-                        ></a>
-                        <div className="switch" onClick={toggleTheme}>
                             <div
                                 className={
                                     theme === 'light'
-                                        ? 'theme light'
-                                        : 'theme dark'
+                                        ? 'theme theme-mobile light'
+                                        : 'theme theme-mobile dark'
                                 }
                                 style={{
                                     transform: isDarkTheme
-                                        ? 'translateX(20px)'
+                                        ? 'translateX(6vw)'
                                         : 'translate(0)',
                                 }}
                             ></div>
                         </div>
+
+                        <div className="header-buttons-mobile">
+                            <a
+                                href="#"
+                                target="_blank"
+                                className={
+                                    theme === 'light'
+                                        ? 'icon icon-mobile telegram light'
+                                        : 'icon icon-mobile telegram dark'
+                                }
+                            ></a>
+                            <a
+                                href="#"
+                                target="_blank"
+                                className={
+                                    theme === 'light'
+                                        ? 'icon icon-mobile vk light'
+                                        : 'icon icon-mobile vk dark'
+                                }
+                            ></a>
+                            <a
+                                href="#"
+                                target="_blank"
+                                className={
+                                    theme === 'light'
+                                        ? 'icon icon-mobile github light'
+                                        : 'icon icon-mobile github dark'
+                                }
+                            ></a>
+                            <a
+                                onClick={handleOpenModalMenu}
+                                className={
+                                    theme === 'light'
+                                        ? 'icon-menu light'
+                                        : 'icon-menu dark'
+                                }
+                            ></a>
+                        </div>
                     </div>
-                </div>
+                )}
             </header>
 
             <div className="welcome-block">
@@ -266,7 +351,7 @@ export function App() {
                     по следующим направлениям:
                 </p>
 
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     <p className="tag">
                         <p
                             className={
@@ -498,6 +583,34 @@ export function App() {
                     Вы можете связаться со мной в Телеграм <br /> или ВК 👇
                 </p>
             </ModalWindow>
+
+            <ModalMenu show={showModalMenu} onClose={handleCloseModalMenu}>
+                <a onClick={upButton}>Обо мне</a>
+                <a
+                    onClick={e => toBlock(e.target.getAttribute('height'))}
+                    height="500"
+                >
+                    Услуги
+                </a>
+                <a
+                    onClick={e => toBlock(e.target.getAttribute('height'))}
+                    height="1100"
+                >
+                    Портфолио
+                </a>
+                <a
+                    onClick={e => toBlock(e.target.getAttribute('height'))}
+                    height="1750"
+                >
+                    Отзывы
+                </a>
+                <a
+                    onClick={e => toBlock(e.target.getAttribute('height'))}
+                    height="2600"
+                >
+                    Гарантии
+                </a>
+            </ModalMenu>
         </>
     );
 }

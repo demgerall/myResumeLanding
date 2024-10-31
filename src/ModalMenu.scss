@@ -1,0 +1,67 @@
+$mainColor: #4824ff;
+$shadowColor: #4824ff40;
+
+.modal-menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: flex-end;
+
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+
+    z-index: 1000;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+
+        .modal-menu-content {
+            transform: translateY(0);
+        }
+    }
+}
+
+.modal-menu-content {
+    width: 50vw;
+    height: 50vw;
+
+    position: absolute;
+    top: 13.5vh;
+    right: 5vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    background: white;
+    border: 3px solid var(--switchBackground);
+    border-radius: 40px;
+
+    font-size: 5vw;
+    color: #000;
+    line-height: 7vw;
+
+    transform: translateY(-2vh);
+    transition: transform 0.5s ease;
+    z-index: 1001;
+
+    a {
+        color: #000;
+        padding: 1vw 6vw;
+        border-bottom: 0.5vw solid #eeebff50;
+    }
+
+    a:last-child {
+        border-bottom: none;
+    }
+}
